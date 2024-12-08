@@ -1,0 +1,277 @@
+.elementor-page-form {
+    display: block;
+    margin-top: 30px;
+    width: 50%;
+    height: 395px;
+    box-shadow: 2px 4px 12px 7px #474747;
+    position: relative;
+    left: 25%;
+    top: 80px;
+    overflow: hidden;
+    transition: 0.5s ease-in;
+    background-color: #ffffff;
+    color: black;
+}
+
+.elementor-page-form > .active {
+    display: block;
+}
+
+.slide.in {
+    opacity: 1;
+}
+.slide {
+    opacity: 1;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.elementor-page-form .project-form {
+    display: block;
+    height: 408px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+ main .project-page-01-active{
+    display: block;
+ }
+
+ 
+.elementor-basic-address{
+    margin-top: 20px;
+    width: 90%;
+    position: relative;
+    left: 5%;
+
+    h2{
+        text-transform: uppercase;
+        color: rgb(48, 48, 48);
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 700;
+        text-align: center;
+
+        span{
+            color: #06fff3;
+        }
+    }
+
+    p{
+        margin-top: 20px;
+        font-size: 14px;
+        text-align: center;
+        color: #4d4d4d;
+
+        a{
+            text-decoration: none;
+            color: #06fff3;
+        }
+    }
+
+    .line{
+        border-bottom: 2px solid #06fff3;
+        width: 15%;
+        position: relative;
+        left: 42%;
+        margin-top: 3px;
+    }
+}
+.elementor-basic-address p a:hover{
+    text-decoration: underline;
+    font-size: 15px;
+}
+button{
+    background: none;
+    height: 30px;
+    width: 100px;
+    border: 2px solid #06fff3;
+}
+
+.pro-button-gs{
+    height: 70px;
+    width: 40%;
+    position: relative;
+    top: 30px;
+    left: 30%;
+    border-radius: 40px;
+    cursor: pointer;
+    background: none;
+    border: 2px solid black;
+
+    a{
+        text-decoration: none;
+        font-style: normal;
+        text-transform: uppercase;
+        color: #06fff3;
+        font-size: 22px;
+        font-weight: 600;
+    }
+}
+
+.pro-button-gs:hover{
+    background: #06fff3;
+    border: 2px solid #ffffff;
+    
+    a{
+        color: black;
+        font-size: 24px;
+        font-weight: 700;
+        transition: 0.5s ease-in;
+    }
+}
+
+.transition{
+    position: fixed;
+    top: 560px;
+    left: 28%;
+    display: flex;
+
+    button{
+        height: 67px;
+        width: 67px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        border: 2px solid #06fff3;
+        cursor: pointer;
+
+        a{
+            color: #000;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 10px;
+            text-align: center;
+        }
+    }
+
+    .forward{
+        margin-left: 350%;
+    }
+}
+
+.project-form-page-01 .pro-button{
+    height: 70px;
+    width: 40%;
+    position: relative;
+    top: 30px;
+    left: 30%;
+    border-radius: 40px;
+    cursor: pointer;
+    background: none;
+    border: 2px solid black;
+    display: flexbox;
+    margin-bottom: 30px;
+
+    a{
+        text-decoration: none;
+        font-style: normal;
+        text-transform: uppercase;
+        color: #06fff3;
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+.project-form-page-01 .pro-button:hover{
+    background: #06fff3;
+    border: 2px solid #ffffff;
+    
+    a{
+        color: black;
+        font-size: 19px;
+        font-weight: 700;
+        transition: 0.5s ease-in;
+    }
+}
+
+.project-form-page-02{
+    margin-top: 20px;
+    position: relative;
+    left: 5%;
+
+     label{
+        color: #242424;
+        font-family: sans-serif;
+        text-transform: capitalize;
+        font-weight: 600;
+     }
+
+     input, select{
+        height: 30px;
+        width: 230px;
+        border-radius: 3px;
+        border: none;
+        border-bottom: 2px solid #06fff3;
+        margin-top: 5px;
+        background: #070606;
+        color: #06fff3;
+        font-size: 17px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+     }
+}
+
+.project-form-page-02 input:focus, select:focus{
+    width: 270px;
+    border: 3px solid #06fff3;
+}
+
+.project-form-page-02 .pro-button{
+    height: 50px;
+    width: 30%;
+    position: relative;
+    top: 13.5px;
+    left: 30%;
+    border-radius: 40px;
+    cursor: pointer;
+    background: none;
+    border: 2px solid black;
+    display: flexbox;
+    margin-bottom: 30px;
+
+    a{
+        text-decoration: none;
+        font-style: normal;
+        text-transform: uppercase;
+        color: #06fff3;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+}
+.project-form-page-02 .pro-button:hover{
+    background: #06fff3;
+    border: 2px solid #ffffff;
+    
+    a{
+        color: black;
+        font-size: 19px;
+        font-weight: 700;
+        transition: 0.5s ease-in;
+    }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+    .elementor-page-form {
+        width: 90%;
+        left: 5%;
+    }
+
+    .pro-button-gs,
+    .project-form-page-01 .pro-button,
+    .project-form-page-02 .pro-button {
+        width: 90%;
+        left: 5%;
+    }
+
+    .transition {
+        top: auto;
+        bottom: 20px;
+        left: 10%;
+    }
+
+    .transition .forward {
+        margin-left: 20%;
+    }
+}
+
+
