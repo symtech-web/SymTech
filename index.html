@@ -597,7 +597,7 @@
             <h6><strong>Address:</strong> Tema Ghana </h6>
           </li>
           <li><i class="fa fa-envelope"></i>
-            <h6><strong>Mail Us:</strong> <a href="mailto:sympletechnology@gmail.com">sympletechnology@gmail.com</a></h6>
+            <h6><strong>Mail Us:</strong> <a href="mailto:kbbtony@gmail.com">kbbtony@gmail.com</a></h6>
           </li>
           <li><i class="fa fa-phone"></i>
            <h6><strong>Phone:</strong> <a href="tel:+233502384384">+233 502 384 384</a></h6>
@@ -607,63 +607,57 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-6 col-sm-6">
-        <form id="form" name="contact-form" method="post" action="#">
-          <div class="row wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <div class="col-sm-6">
-              <div class="form-group">
-                <input type="text" name="to_name" class="form-control" placeholder="Subject" id="to_name" required="required">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <input type="text" name="from_name" class="form-control" placeholder="From Name" id="from_name" required="required">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea name="message" id="message" class="form-control" rows="4" placeholder="Enter your message" required="required"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="email" name="reply_to" class="form-control" placeholder="Reply To Email" id="reply_to" required="required">
-          </div>
-          <button type="submit" class="btn-send col-md-12 col-sm-12 col-xs-12" id="button">Send Email</button>
-        </form>
-        
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-        <script type="text/javascript">
-          // Initialize EmailJS
-          emailjs.init('pXRmKjv8RoUedEsrq');
-        
-          // Function to handle the form submission
-          function handleFormSubmission() {
-            const btn = document.getElementById('button');
-        
-            document.getElementById('form').addEventListener('submit', function (event) {
-              event.preventDefault();
-        
-              btn.textContent = 'Sending...'; // Change button text to 'Sending'
-        
-              const serviceID = 'default_service';
-              const templateID = 'template_ewc4pij';
-        
-              emailjs.sendForm(serviceID, templateID, this)
-                .then(() => {
-                  btn.textContent = 'Send Email'; // Reset button text
-                  alert('Email sent successfully!'); // Success alert
-                })
-                .catch((err) => {
-                  btn.textContent = 'Send Email'; // Reset button text
-                  alert(`Failed to send email: ${JSON.stringify(err)}`); // Error alert
-                });
-            });
-          }
-        
-          // Call the function to attach the form submission handler
-          handleFormSubmission();
-        </script>
-        
+     <div class="col-md-6 col-sm-6">
+  <form id="form" name="contact-form" method="post" action="#">
+    <div class="row wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" name="to_name" class="form-control" placeholder="Subject" id="to_name" required="required">
+        </div>
       </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <input type="text" name="from_name" class="form-control" placeholder="From Name" id="from_name" required="required">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea name="message" id="message" class="form-control" rows="4" placeholder="Enter your message" required="required"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="email" name="reply_to" class="form-control" placeholder="Reply To Email" id="reply_to" required="required">
+    </div>
+    <button type="submit" class="btn-send col-md-12 col-sm-12 col-xs-12" id="button">Send Email</button>
+  </form>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="text/javascript">
+    // Initialize EmailJS
+    emailjs.init('ykOEB0xuNgUcBiHpc');
+
+    // Handle form submission
+    const btn = document.getElementById('button');
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      btn.textContent = 'Sending...'; // Change button text to 'Sending'
+
+      const serviceID = 'default_service';
+      const templateID = 'template_e4y55ck';
+
+      emailjs.sendForm(serviceID, templateID, this)
+        .then(() => {
+          btn.textContent = 'Send Email'; // Reset button text
+          alert('Email sent successfully!'); // Success alert
+        })
+        .catch((err) => {
+          btn.textContent = 'Send Email'; // Reset button text
+          alert(`Failed to send email: ${JSON.stringify(err)}`); // Error alert
+        });
+    });
+  </script>
+</div>
     </div>
   </div>
 </section>
