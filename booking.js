@@ -34,7 +34,7 @@ function isValidBookingTime(date, time) {
 }
 
 function getPrefilledMessage(user, method) {
-  return `Hi, this is ${user.name}. I just submitted a request for ${user.service} (ID: ${user.submissionId}). I'd like to follow up via ${method}.`;
+  return `Hi, this is ${user.fullname}. I just submitted a request for ${user.service} (ID: ${user.submissionId}). I'd like to follow up via ${method}.`;
 }
 
 function updateTimeOptions() {
@@ -132,8 +132,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (bookingType === 'text') {
         const message = getPrefilledMessage(user, selectedMethod);
-        const smsLink = `sms:+233502384384?body=${encodeURIComponent(message)}`;
-        const waLink = `https://wa.me/233502384384?text=${encodeURIComponent(message)}`;
+        const smsLink = `sms:+233256923760?body=${encodeURIComponent(message)}`;
+        const waLink = `https://wa.me/233256923760?text=${encodeURIComponent(message)}`;
         const emailLink = `mailto:symtechweb@gmail.com?subject=Follow-up Booking&body=${encodeURIComponent(message)}`;
         const redirectLink = selectedMethod === 'email' ? emailLink : (selectedMethod === 'whatsapp' ? waLink : smsLink);
         window.open(redirectLink);
@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const message = getPrefilledMessage(user, selectedMethod);
-    const join_link = selectedMethod === 'whatsapp' ? "https://wa.me/233502384384" : (VIDEO_LINKS[selectedMethod] || "");
+    const join_link = selectedMethod === 'whatsapp' ? "https://wa.me/233256923760" : (VIDEO_LINKS[selectedMethod] || "");
 
     const record = {
       submission_id: user.submissionId,
