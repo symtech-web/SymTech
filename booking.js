@@ -34,7 +34,7 @@ function isValidBookingTime(date, time) {
 }
 
 function getPrefilledMessage(user, method) {
-  return `Hi SymTech Web, I just submitted a request for ${user.service} (ID: ${user.submissionId}). I'd like to follow up via ${method}.`;
+  return `Hi SymTech Web, my name is ${user.name}. I just submitted a request for ${user.service} (Submission ID: ${user.submissionId}). I'd like to follow up via ${method}.`;
 }
 
 function updateTimeOptions() {
