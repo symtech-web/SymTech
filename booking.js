@@ -1,8 +1,7 @@
-// === CONFIG ===
 if (!window.supabaseClient) {
   window.supabaseClient = window.supabase.createClient(
     'https://qkbbovcclwsohvtupyhe.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSwiaWF0IjoxNzQ4NzMzMTA5LCJleHAiOjIwNjQzMDkxMDl9.ndE8TOFcf0ZkXPh7SnXnwbAkvySV8dqr_UlT7KG7wXg'
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSwiaWF0IjoxNzQ4NzMzMTA5LCJleHAiOjIwNjQzMDkxMDl9.ndE8TOFcf0ZkXPh7SnXnwbAkvySV8dqr_UlT7KG7wXg'
   );
 }
 const supabase = window.supabaseClient;
@@ -18,7 +17,6 @@ const VIDEO_LINKS = {
   teams: 'https://teams.live.com/meet/936608741279?p=Fzq07RTYi6NSYRntZx'
 };
 
-// === UTILS ===
 function formatDateTime(dateStr, timeStr) {
   const [hour, minute] = timeStr.split(":").map(Number);
   const date = new Date(dateStr);
@@ -68,7 +66,6 @@ function updateTimeOptions() {
   timeSelect.style.display = 'block';
 }
 
-// === MAIN LOGIC ===
 document.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('smart-booking-popup');
   const openBtn = document.getElementById('book-meeting-btn');
@@ -90,15 +87,27 @@ document.addEventListener('DOMContentLoaded', () => {
   let bookingType = "", selectedMethod = "";
 
   const user = {
-    name: localStorage.getItem("stw_user_name"),
-    email: localStorage.getItem("stw_user_email"),
-    phone: localStorage.getItem("stw_user_phone"),
+    name: localStorage.getItem("stw_user_name") || "Anonymous",
+    email: localStorage.getItem("stw_user_email") || "",
+    phone: localStorage.getItem("stw_user_phone") || "",
     mediahandle: localStorage.getItem("stw_user_mediahandle") || '',
     user_type: localStorage.getItem("stw_user_type") || '',
-    service: localStorage.getItem("stw_user_service"),
-    submissionId: localStorage.getItem("stw_submission_id") || crypto.randomUUID()
+    service: localStorage.getItem("stw_user_service") || "a service",
+    submissionId: localStorage.getItem("stw_submission_id")
   };
 
+  if (!user.submissionId) {
+    alert("❌ Missing Submission ID. Please complete the Get Started form first.");
+    return;
+  }
+
+  if (!user.name || user.name === "Anonymous" || user.name === "Guest") {
+    const entered = prompt("Please enter your name to personalize your booking:");
+    if (entered) {
+      user.name = entered;
+      localStorage.setItem("stw_user_name", entered);
+    }
+  }
 
   function showStep(step) {
     [stepType, stepOptions, stepSchedule, stepDone].forEach(el => el.style.display = 'none');
@@ -146,79 +155,81 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
-  confirmBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
+confirmBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
 
-    const date = dateInput.value;
-    const time = timeSelect.value;
+  const date = dateInput.value;
+  const time = timeSelect.value;
 
-    if (!date || !time || !isValidBookingTime(date, time)) {
-      return alert("❌ Please select a valid future date and time (7AM–10PM).");
-    }
+  if (!date || !time || !isValidBookingTime(date, time)) {
+    alert("❌ Please select a valid future date and time (7AM–10PM).");
+    return;
+  }
 
-    const message = getPrefilledMessage(user, selectedMethod);
-    const join_link = selectedMethod === 'whatsapp' ? "https://wa.me/233256923760" : (VIDEO_LINKS[selectedMethod] || "");
+  // Update button UI
+  confirmBtn.disabled = true;
+  const originalText = confirmBtn.textContent;
+  confirmBtn.textContent = "Sending...";
 
-    const record = {
-      submission_id: user.submissionId,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      service: user.service,
-      booking_type: bookingType,
+  const message = getPrefilledMessage(user, selectedMethod);
+  const join_link = selectedMethod === 'whatsapp' ? "https://wa.me/233256923760" : (VIDEO_LINKS[selectedMethod] || "");
+
+  const record = {
+    submission_id: user.submissionId,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    service: user.service,
+    booking_type: bookingType,
+    method: selectedMethod,
+    scheduled_date: date,
+    scheduled_time: time,
+    message,
+    link: join_link
+  };
+
+  try {
+    await supabase.from("bookings").insert([record]);
+
+    await emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, {
+      to_name: user.name,
+      to_email: user.email,
+      type: bookingType,
       method: selectedMethod,
-      scheduled_date: date,
-      scheduled_time: time,
+      date,
+      time,
+      service: user.service,
       message,
-      link: join_link
-    };
+      join_link
+    }, EMAIL_PUBLIC_KEY);
 
-    try {
-      // Debug log
-      console.log("📤 Booking data:", record);
+    await fetch(FORMSUBMIT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: user.name,
+        email: user.email,
+        message: `
+          New booking from ${user.name} (${user.email})<br><br>
+          <strong>Service:</strong> ${user.service}<br>
+          <strong>Type:</strong> ${bookingType} (${selectedMethod})<br>
+          <strong>Date:</strong> ${date}<br>
+          <strong>Time:</strong> ${time}<br>
+          <strong>Join Link:</strong> ${join_link}<br>
+          <br>
+          ${message}`
+      })
+    });
 
-      // Save to bookings table
-      await supabase.from("bookings").insert([record]);
+    showStep(stepDone);
+  } catch (err) {
+    alert("❌ Failed to complete booking. Please try again.");
+  } finally {
+    confirmBtn.disabled = false;
+    confirmBtn.textContent = originalText;
+  }
+});
 
-      // Send EmailJS (matches template)
-     await emailjs.send(EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID, {
-  to_name: user.name,
-  to_email: user.email,
-  type: bookingType,
-  method: selectedMethod,
-  date,
-  time,
-  service: user.service,
-  message,
-  join_link
-}, EMAIL_PUBLIC_KEY);
-
-
-      // Send via FormSubmit
-      await fetch(FORMSUBMIT_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: user.name,
-          email: user.email,
-          message: `
-            New booking from ${user.name} (${user.email})<br><br>
-            <strong>Service:</strong> ${user.service}<br>
-            <strong>Type:</strong> ${bookingType} (${selectedMethod})<br>
-            <strong>Date:</strong> ${date}<br>
-            <strong>Time:</strong> ${time}<br>
-            <strong>Join Link:</strong> ${join_link}<br>
-            <br>
-            ${message}`
-        })
-      });
-
-      showStep(stepDone);
-    } catch (err) {
-      console.error("Booking submission failed:", err);
-      alert("❌ Failed to complete booking. Please try again.");
-    }
-  });
 
   dateInput.addEventListener('change', updateTimeOptions);
 });
