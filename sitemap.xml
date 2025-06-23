@@ -2,19 +2,98 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+   
+   <!-- Main Pages -->
    <url>
-      <loc>https://symtech-web.github.io/SymTech/</loc>
-      <lastmod>2024-12-15T17:34:45+00:00</lastmod>
+      <loc>https://symtechweb.com/</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
       <priority>1.00</priority>
+      <changefreq>weekly</changefreq>
    </url>
+   
    <url>
-      <loc>https://symtech-web.github.io/SymTech/mail-symtech.html</loc>
-      <lastmod>2024-12-15T17:34:45+00:00</lastmod>
+      <loc>https://symtechweb.com/index.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.90</priority>
+      <changefreq>weekly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/about.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
       <priority>0.80</priority>
+      <changefreq>monthly</changefreq>
    </url>
+   
    <url>
-      <loc>https://symtech-web.github.io/SymTech/index.html</loc>
-      <lastmod>2024-12-15T17:34:45+00:00</lastmod>
-      <priority>0.64</priority>
+      <loc>https://symtechweb.com/services.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.80</priority>
+      <changefreq>monthly</changefreq>
    </url>
+   
+   <url>
+      <loc>https://symtechweb.com/portfolio.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.70</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/contact.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.70</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/mail-symtech.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.60</priority>
+      <changefreq>yearly</changefreq>
+   </url>
+   
+   <!-- Service Pages -->
+   <url>
+      <loc>https://symtechweb.com/web-development.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.80</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/graphic-designing.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.80</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/online-advertisement.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.80</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/microsoft-office.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.70</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/video-editing.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.70</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
+   <url>
+      <loc>https://symtechweb.com/company-branding.html</loc>
+      <lastmod>2025-06-23T12:00:00+00:00</lastmod>
+      <priority>0.70</priority>
+      <changefreq>monthly</changefreq>
+   </url>
+   
 </urlset>
